@@ -26,7 +26,8 @@ import org.sunbird.keys.JsonKey;
 import org.sunbird.logging.LoggerUtil;
 import org.sunbird.request.Request;
 import org.sunbird.request.RequestContext;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 /**
  * This class will contains all the common utility methods.
  *
@@ -433,7 +434,11 @@ public class ProjectUtil {
       }
       String isoCode = phoneNumberUtil.getRegionCodeForCountryCode(Integer.parseInt(contryCode));
       phoneNumber = phoneNumberUtil.parse(phNumber, isoCode);
-      return phoneNumberUtil.isValidNumber(phoneNumber);
+	  String regex = "^\\d{10}$";
+	  Pattern pattern = Pattern.compile(regex);
+	  Matcher matcher = pattern.matcher(phNumber);
+	  boolean result = matcher.matches();
+      return result;
     } catch (NumberParseException e) {
       logger.error(phNumber + " :this phone no. is not a valid one.", e);
     }
