@@ -434,6 +434,7 @@ public class ProjectUtil {
       }
       String isoCode = phoneNumberUtil.getRegionCodeForCountryCode(Integer.parseInt(contryCode));
       phoneNumber = phoneNumberUtil.parse(phNumber, isoCode);
+      System.out.println("Phone num regex inside function ");
 	  String regex = "^\\d{10}$";
 	  Pattern pattern = Pattern.compile(regex);
 	  Matcher matcher = pattern.matcher(phNumber);
